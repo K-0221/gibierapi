@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ジビエ調理法検索</title>
+</head>
+<body>
+    <h1>ジビエ料理の調理方法検索</h1>
+    <form method="post">
+        <label for="dish">ジビエ料理名を入力してください：</label><br>
+        <input type="text" name="dish" id="dish" placeholder="例：鹿のロースト" required>
+        <button type="submit">調べる</button>
+    </form>
+    
+    {% if result %}
+    <h2>調理方法</h2>
+    <p>{{result}}</p>
+    {% endif %}
+</body>
+</html>
