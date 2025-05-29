@@ -18,8 +18,3 @@ def get_recipe():
   
 if __name__=="__main__":
     app.run(debug=True)
-
-
-
-
-    cd "$env:USERPROFILE\\Desktop\\gibier_app"
