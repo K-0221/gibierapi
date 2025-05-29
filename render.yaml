@@ -1,7 +1,7 @@
 services:
 -   type: web
     name: gibierapi
-     env: python
-  region: oregon
-  startCommand: gunicorn app:app
-          plan: free
+    env: python
+region: oregon
+startCommand: gunicorn app:app
+plan: free

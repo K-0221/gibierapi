@@ -15,5 +15,3 @@ def recipe():
         'dish': dish,
         'method': f'{dish}のおすすめ調理法はローストです！'
     })
-  
-if __name__=='__main__':
