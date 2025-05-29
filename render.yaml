@@ -3,6 +3,5 @@ services:
     name: gibierapi
      env: python
   region: oregon
-  buildCommand: ""
   startCommand: gunicorn app:app
           plan: free
