@@ -17,7 +17,7 @@ def recipe():
     if not dish:
         return Response(
             json.dumps({'error': 'No dish provided'})
-            mimetype='application/json; charset=utf-8',
+            content_type='application/json; charset=utf-8',
             status=400
         )
     return Response(
@@ -25,7 +25,7 @@ def recipe():
             'dish': dish,
             'method': f'{dish}のおすすめ調理法はローストです！'
         }, ensure_ascii=False),
-        mimetype='application/json; charset=utf-8',
+        content_type='application/json; charset=utf-8',
         status=200
     )
 
