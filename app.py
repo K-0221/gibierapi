@@ -8,12 +8,15 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/api/recipe')
+@app.route('/api/recipe',methods=['GET','POST'])
 def recipe():
-    dish = request.args.get("dish")
+    if request.method == 'POST':
+        dish = request.form.get("dish")
+    else:
+        dish = request.args.get("dish")
     if not dish:
         return Response(
-            json.dumps({'error': 'No dish provided'},ensure_ascii=False),
+            json.dumps({'error': 'No dish provided'})
             mimetype='application/json; charset=utf-8',
             status=400
         )
@@ -22,7 +25,7 @@ def recipe():
             'dish': dish,
             'method': f'{dish}のおすすめ調理法はローストです！'
         }, ensure_ascii=False),
-        mismetype='application/json; charset=utf-8',
+        mimetype='application/json; charset=utf-8',
         status=200
     )
 
