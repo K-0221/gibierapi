@@ -1,17 +1,31 @@
-from flask import Flask , request , jsonify
+from flask import Flask , request , jsonify, render_template
+import os
+import json
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'Welcome to Gibier API'
+    return render_template('index.html')
 
 @app.route('/api/recipe')
 def recipe():
     dish = request.args.get("dish")
     if not dish:
-        return jsonify({'error': 'No dish provided'}), 400
-    return jsonify({
-        'dish': dish,
-        'method': f'{dish}のおすすめ調理法はローストです！'
-    })
+        return Response(
+            json.dumps({'error': 'No dish provided'},ensure_ascii=False),
+            mimetype='application/json; charset=utf-8',
+            status=400
+        )
+    return Response(
+        json.dumps({
+            'dish': dish,
+            'method': f'{dish}のおすすめ調理法はローストです！'
+        }, ensure_ascii=False),
+        mismetype='application/json; charset=utf-8',
+        status=200
+    )
+
+if __name__=='__main__':
+    port = int(os.environ.get("PORT",5000))
+    app.run(host='0.0.0.0', port=port)
