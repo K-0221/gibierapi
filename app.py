@@ -8,7 +8,7 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/api/recipe',methods=['GET','POST'])
+@app.route('/api/recipe',methods=['GET', 'POST'])
 def recipe():
     if request.method == 'POST':
         dish = request.form.get("dish")
