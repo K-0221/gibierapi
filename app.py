@@ -16,19 +16,20 @@ def recipe():
         dish = request.args.get("dish")
     if not dish:
         return Response(
-            json.dumps({'error': 'No dish provided'})
-            content_type='application/json; charset=utf-8',
+            json.dumps({'error': 'No dish provided'},ensure_ascii=False).encode('utf-8'),
+            mimetype='application/json; charset=utf-8',
             status=400
         )
     return Response(
         json.dumps({
             'dish': dish,
             'method': f'{dish}のおすすめ調理法はローストです！'
-        }, ensure_ascii=False),
-        content_type='application/json; charset=utf-8',
+        }, ensure_ascii=False).encode('utf-8'),
+        mimetype='application/json; charset=utf-8',
         status=200
     )
 
 if __name__=='__main__':
     port = int(os.environ.get("PORT",5000))
     app.run(host='0.0.0.0', port=port)
+
