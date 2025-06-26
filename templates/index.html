@@ -15,12 +15,17 @@
 <script>
     function seachRecipe() {
         const dish = document.getElementById('dishInput').value;
-        fetch('/api/recipe?dish=${dish}')
+        fetch('https://gibierapi-1.onrender.com/api/recipe?dish=${encodeURIComponent(dish)}')
             .then(res => res.json())
             .then(data => {
                 document.getElementById('result').innerText = Json.stringify(data,null,2);
+            })
+            .catch (err => {
+                document.getElementById("result").innerText = "エラーが発生しました。";
+                console.error(err);
             });
-    }
+            return false; 
+        }
 </script>    
 </body>
 </html>
